@@ -2,7 +2,7 @@
 #include <iostream>
 #include <chrono>       // For benchmarking
 #include <cmath>        // For abs()
-#include <algorithm>    //For std::min
+#include <algorithm>    // For std::min
 
 using namespace cv;
 using namespace std::chrono;
