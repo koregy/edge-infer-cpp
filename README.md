@@ -13,7 +13,6 @@
 | 03 | Model Conversion | PyTorch to ONNX Pipeline | Pending |
 | 04 | Inference Engine | ONNX Runtime C++ Integration | Pending |
 | 05 | Optimization | Latency & Memory Profiling | Pending |
-| 06 | Documentation | Portfolio & Technical Report | Pending |
 
 ---
 
@@ -61,9 +60,9 @@ const uchar* ptr_next = src.ptr<uchar>(y + 1);
 int gx = -ptr_prev[x-1] + ptr_prev[x+1] - 2*ptr_curr[x-1] + ...
 ```
 
-### **Performance Benchmark & Analysis**
+### Performance Benchmark & Analysis
 
-#### **Evaluation Environment**
+#### Evaluation Environment
 To ensure the reliability of the results, all tests were conducted in a controlled environment:
 * **CPU:** 13th Gen Intel(R) Core(TM) i7-1370P (20 vCPUs, 24MB Cache)
 * **OS:** Linux (Ubuntu 22.04.5 LTS)
@@ -71,7 +70,7 @@ To ensure the reliability of the results, all tests were conducted in a controll
 * **Optimization Flag:** `-O3` (Highest Optimization Level)
 * **Input:** 512x512 Grayscale Image / **Iterations:** 1,000 loops
 
-#### **Benchmark Results**
+#### Benchmark Results
 | Implementation Method |Total Time (1000 runs) | Avg Time per Frame | Speedup Factor |
 | :--- | :--- | :--- | :--- |
 | **Naive Implementation** | 671 ms | 0.671 ms | 1.0x |
