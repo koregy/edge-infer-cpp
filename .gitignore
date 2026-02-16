@@ -1,2 +1,7 @@
 build/
 .vscode/
+
+# Ignore AI models (Large Files)
+models/
+*.onnx
+*.onnx.data
