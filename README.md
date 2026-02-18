@@ -155,7 +155,8 @@ auto output_tensors = session.Run(
 
 ### Execution Result
 *(Input Image: Samoyed Dog)*
-<img src="assets/test_image.jpg" width="400" alt="Test Image"/>
+
+<img src="assets/test_image.jpg" width="300" alt="Test Image"/>
 <img src="assets/04-inference-result.png" width="400" alt="Inference Result"/>
 
 ## Day 5: Performance Benchmarking & Optimization
