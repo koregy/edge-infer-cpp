@@ -1,6 +1,5 @@
 import torch
 import torchvision.models as models
-from torchvision.models import ResNet18_Weights
 import os
 
 def export_resnet18():
@@ -22,9 +21,8 @@ def export_resnet18():
     print("[Info] Loading pre-trained ResNet18 model...")
     # Using ResNet18 as a baseline due to its standard architecture (Residual Blocks)
     # 'pretrained=True' is deprecated. Using 'weights' parameter instead
-    weights = ResNet18_Weights.IMAGENET1K_V1
-    model = models.resnet18(pretrained=True)
-
+    model=models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+    
     # Switch to Inference Mode
     # This disables training-specific layers like Dropout and fixes Batch Normalization statistics
     # Without this, the exported model will produce incorrect results
@@ -38,19 +36,19 @@ def export_resnet18():
     # 4. Export to ONNX
     print(f"[Info] Exporting model to {onnx_file_path}...")
 
-    torch.onnx.export(
-        model,                          # Model to be exported
-        dummy_input,                    # Input tensor for tracing
-        onnx_file_path,                 # Output file path
-        export_params=True,             # Store the trained parameter weights inside the model file
-        opset_version=11,               # ONNX Opset Version 11 (Highly compatible with OpenCV DNN / TensorRT)
-        do_constant_folding=True,       # Optimization: Execute constant nodes ahead of time to simplify the graph
-        input_names=['input'],          # Name of the input node (Used in C++ for binding)
-        output_names=['output'],        # Name of the output node (Used in C++ for retrieval)
-        dynamic_axes={                  # Allow variable batch sizes (e.g., processing 1 or 8 images at once)
-            'input': {0: 'batch_size'},
-            'output': {0: 'batch_size'}
-        }
+    torch.onnx.export( 
+        model,                      # Model to be exported
+        dummy_input,                # Input tensor for tracing
+        onnx_file_path,             # Output file path
+        opset_version=18,           # ONNX Opset Version 18
+        export_params=True,         # Store the trained parameter weights inside the model file
+        do_constant_folding=True,   # Optimization: Execute constant nodes ahead of time to simplify the graph
+        input_names=['input'],      # Name of the input node (Used in C++ for binding)
+        output_names=['output'],    # Name of the output node (Used in C++ for retrieval)
+        # dynamic_axes={            # Allow variable batch sizes (e.g., processing 1 or 8 images at once)
+        #    'input': {0: 'batch_size'},
+        #    'output': {0: 'batch_size'}
+        # }
     )
 
     print(f"[Success] Model saved to {onnx_file_path}")
