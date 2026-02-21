@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(EdgeInferenceEngine)
+project(06-class-refactor)
 
 # Use C++ 17 Standard
 set(CMAKE_CXX_STANDARD 17)
